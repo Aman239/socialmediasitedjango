@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+  {% load static %}
+{% block body %}
+  <!-- Content -->
+  <div id="content"> 
+    
+
+    <section class="login-register padding-top-100 padding-bottom-150">
+      <div class="container">
+        <div class="inside-log-reg">
+              
+              <!-- Nav Tabs -->
+              <ul class="nav" id="myTab" role="tablist">
+                Welcome! {{request.user.userdatabase_set.first.name}}<br>
+                <li class=""> <a class="nav-link active" id="reg-tab" data-toggle="tab" href="#reg" role="tab" aria-selected="false">Start New Company</a> </li>
+              </ul>
+              
+
+              <div class="tab-content" id="myTabContent"> 
+                
+
+                
+                <!-- Add Company -->
+                <div class="tab-pane show active" id="reg" role="tabpanel" aria-labelledby="reg-tab">
+                  <form action="{% url 'addcompany' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <center><img id="output" width="200" style="border-radius:50%" height="250"/>
+                    </center>
+                    <ul class="row">
+<!--                      Company logo-->
+                       <li class="col-md-3">
+                      </li>
+                       <li class="col-md-6">
+                        <label> Company Logo *
+                          {{ form.logo }}
+                        </label>
+                      </li>
+                      <li class="col-md-3">
+                      </li>
+
+                      <!-- Name -->
+                      <li class="col-md-6">
+                        <label> Company Name *
+                          {{ form.name }}
+                        </label>
+                      </li>
+                      
+                      <!-- Name -->
+                      <li class="col-md-6">
+                        <label> Email Address *
+                          {{ form.email }}
+                        </label>
+                      </li>
+                      <li class="col-md-12">
+                        <label> Title *
+                          {{ form.title }}
+                        </label>
+                      </li>
+
+<!--                      contact number-->
+                      <li class="col-md-6">
+                        <label> Contact Number *
+                          {{form.number}}
+                        </label>
+                      </li>
+                      <!-- website -->
+                      <li class="col-md-6">
+                        <label>Company Website *
+                          {{form.website}}
+                        </label>
+                      </li>
+                      <li class="col-md-12">
+                        <label>Company Address *
+                          {{form.address}}
+                        </label>
+                      </li> <li class="col-md-12">
+                        <label>Company Address on map (paste the embed code here)*
+                          {{form.map_embed}}
+                        </label>
+                      </li>
+
+
+
+                      <li class="col-md-12 text-center">
+                        <button type="submit" class="btn">Add Company</button>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+              </div>
+         
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}
+  
